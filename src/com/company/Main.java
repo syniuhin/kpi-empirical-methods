@@ -8,12 +8,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
   private static Criteria criteria;
+  private static List<BigInteger> lastUsed = null;
 
   public static void main(String[] args) {
     try {
@@ -49,6 +51,8 @@ public class Main {
               solve6();
               break;
           }
+        } else if (token.equals("repeat")) {
+          solveAgain();
         } else if (token.equals("criteria")) {
           int num = scanner.nextInt();
           switch (num) {
@@ -68,12 +72,18 @@ public class Main {
     }
   }
 
+  private static void solveAgain() {
+    System.out.println(criteria.calculate(lastUsed));
+    System.out.println();
+  }
+
   private static void solve2() throws FileNotFoundException {
     int mersenneM = 4095;
     int mersenneA = 1366;
     Task02 task02 = new Task02(
         mersenneM, mersenneA, 6, System.currentTimeMillis());
     List<BigInteger> list = task02.generateSequence();
+    lastUsed = new ArrayList<>(list);
 
     System.out.print(
         String.format("Mod:4095  Potential:%4d  ", task02.getPotential()));
@@ -95,6 +105,7 @@ public class Main {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
     Task03 task03 = new Task03(x0);
     List<BigInteger> list = task03.generateSequence();
+    lastUsed = new ArrayList<>(list);
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
@@ -118,6 +129,7 @@ public class Main {
                                BigInteger.valueOf(123), BigInteger.valueOf(7),
                                x0);
     List<BigInteger> list = task04.generateSequence();
+    lastUsed = new ArrayList<>(list);
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
@@ -135,6 +147,7 @@ public class Main {
 
     Task05 task05 = new Task05(genX, genY, BigInteger.valueOf(mersenneM));
     List<BigInteger> list = task05.generateSequence();
+    lastUsed = new ArrayList<>(list);
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
@@ -153,6 +166,7 @@ public class Main {
         " " + x0.toString());
     Task06 task06 = new Task06(p, a, b, x0);
     List<BigInteger> list = task06.generateSequence();
+    lastUsed = new ArrayList<>(list);
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(

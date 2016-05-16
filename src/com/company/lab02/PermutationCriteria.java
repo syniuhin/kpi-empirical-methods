@@ -1,6 +1,5 @@
 package com.company.lab02;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,18 +96,16 @@ public class PermutationCriteria implements Criteria {
       frequency.put(hash, freqNew);
     }
 
-    BigDecimal chisq = BigDecimal.ZERO;
+    BigInteger chisq = BigInteger.ZERO;
     // Computes chi squared
     for (HashMap.Entry<Integer, Integer> kv : frequency.entrySet()) {
-      BigInteger y = BigInteger.valueOf(kv.getValue());
-      y = y.multiply(y);
-      chisq = chisq.add(
-          new BigDecimal(y.multiply(BigInteger.valueOf(tFact)))
-                    .divide(
-                        BigDecimal.valueOf(upperBound),
-                        BigDecimal.ROUND_FLOOR));
+      BigInteger y = BigInteger.valueOf(kv.getValue())
+                               .multiply(BigInteger.valueOf(kv.getValue()))
+                               .multiply(BigInteger.valueOf(tFact));
+      chisq = chisq.add(y);
     }
-    return chisq.doubleValue() - upperBound;
+
+    return chisq.doubleValue() / upperBound - upperBound;
   }
 
   private void reset() {
