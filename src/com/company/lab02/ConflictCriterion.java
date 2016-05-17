@@ -1,5 +1,7 @@
 package com.company.lab02;
 
+import com.company.lab01.SingleValueGenerator;
+
 import java.math.BigInteger;
 import java.util.*;
 
@@ -12,22 +14,60 @@ public class ConflictCriterion implements Criterion {
   public static final double[] T = new double[]{
       .01, .05, .25, 0.5, .75, .95, .99, 1.00 };
 
+  private int logn;
   private int n;
+  private int logm;
   private int m;
 
   private boolean[] met;
 
   private BigInteger bigM = null;
 
-  public ConflictCriterion(int n, int m) {
-    this.n = n;
-    this.m = m;
+  public ConflictCriterion(int logn, int logm) {
+    this.logn = logn;
+    n = 1 << logn;
+    this.logm = logm;
+    m = 1 << logm;
+  }
+
+  public int getLogM() {
+    return logm;
+  }
+
+  public double calculate(SingleValueGenerator generator) {
     met = new boolean[m];
     Arrays.fill(met, false);
+    if (bigM == null)
+      bigM = BigInteger.valueOf(m);
+
+    int collisions = 0;
+    BigInteger current = BigInteger.valueOf(System.currentTimeMillis());
+    for (int i = 0; i < n; ++i) {
+      current = generator.generateNext(current);
+      int mt = current.mod(bigM).intValue();
+      if (!met[mt])
+        met[mt] = true;
+      else
+        collisions++;
+    }
+    System.out.println(String.format("Met %d collisions.", collisions));
+    Map<Integer, Double> pMap = conflictNum();
+    int minD = n;
+    double p = 1;
+    for (Map.Entry<Integer, Double> e : pMap.entrySet()) {
+      int currD = e.getKey() - collisions;
+      if (currD > 0 && currD < minD) {
+        minD = currD;
+        p = e.getValue();
+      }
+    }
+    return p;
   }
 
   @Override
   public double calculate(List<BigInteger> sequence) {
+    met = new boolean[m];
+    Arrays.fill(met, false);
     if (bigM == null)
       bigM = BigInteger.valueOf(m);
     List<BigInteger> seqCopy = new ArrayList<>(sequence);

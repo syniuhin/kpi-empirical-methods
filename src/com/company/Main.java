@@ -1,15 +1,16 @@
 package com.company;
 
 import com.company.lab01.*;
-import com.company.lab02.ConflictCriterion;
-import com.company.lab02.Criterion;
-import com.company.lab02.PermutationCriterion;
+import com.company.lab02.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
@@ -35,7 +36,10 @@ public class Main {
               break;
             case 3:
               System.out.println("Solving 3...");
-              solve3();
+              if (criterion instanceof PermutationCriterion)
+                solve3();
+              else
+                solve3Conflict();
               break;
             case 4:
               System.out.println("Solving 4...");
@@ -49,6 +53,10 @@ public class Main {
               System.out.println("Solving 6...");
               solve6();
               break;
+            case 7:
+              if (criterion instanceof ConflictCriterion)
+                solve7();
+              break;
           }
         } else if (token.equals("repeat")) {
           solveAgain();
@@ -61,22 +69,24 @@ public class Main {
               System.out.println(String.format(
                   "Chosen permutation criteria with t = %d and n = %d", t, n));
               criterion = new PermutationCriterion(t, n);
-            } break;
+            }
+            break;
             case 2: {
-              int n = scanner.nextInt();
-              int m = scanner.nextInt();
+              int logn = scanner.nextInt();
+              int logm = scanner.nextInt();
               System.out.println(String.format(
-                  "Chosen conflict criteria with n = %d and m = %d", n, m));
-              criterion = new ConflictCriterion(n, m);
-              Map<Integer, Double> conflictMap =
-                  ((ConflictCriterion) criterion).conflictNum();
+                  "Chosen conflict criteria with n = %d and m = %d", 1 << logn, 1 << logm));
+              criterion = new ConflictCriterion(logn, logm);
+              Map<Integer, Double> conflictMap = ((ConflictCriterion) criterion)
+                  .conflictNum();
               for (Map.Entry<Integer, Double> kv : conflictMap.entrySet()) {
-                System.out.println(String.format("Probability of having %d " +
-                                                 "collisions is %.6f",
-                                                 kv.getKey(), kv.getValue()));
+                System.out.println(String.format(
+                    "Probability of having %d " + "collisions is %.6f",
+                    kv.getKey(), kv.getValue()));
               }
               System.out.println();
-            } break;
+            }
+            break;
           }
         }
       }
@@ -136,6 +146,15 @@ public class Main {
 */
   }
 
+  private static void solve3Conflict() {
+    BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
+    Task03Conflict task03 = new Task03Conflict(
+        x0, ((ConflictCriterion) criterion).getLogM());
+    System.out.println(String.format("P: %.2f",
+                                     ((ConflictCriterion) criterion).calculate(
+                                         task03)));
+  }
+
   private static void solve4() throws FileNotFoundException {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
     Task04 task04 = new Task04(BigInteger.valueOf(3571),
@@ -184,5 +203,13 @@ public class Main {
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
         String.format("Chi squared: %.2f", criterion.calculate(list)));
+  }
+
+  private static void solve7() {
+    ConflictCriterion conflictCriterion = (ConflictCriterion) criterion;
+    NativeGenerator generator = new NativeGenerator(conflictCriterion.getLogM());
+    System.out.println(String.format("P: %.2f",
+                                     conflictCriterion.calculate(generator)));
+
   }
 }
