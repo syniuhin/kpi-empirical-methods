@@ -1,20 +1,19 @@
 package com.company;
 
 import com.company.lab01.*;
-import com.company.lab02.Criteria;
-import com.company.lab02.PermutationCriteria;
+import com.company.lab02.ConflictCriterion;
+import com.company.lab02.Criterion;
+import com.company.lab02.PermutationCriterion;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-  private static Criteria criteria;
+  private static Criterion criterion;
   private static List<BigInteger> lastUsed = null;
 
   public static void main(String[] args) {
@@ -53,7 +52,7 @@ public class Main {
           }
         } else if (token.equals("repeat")) {
           solveAgain();
-        } else if (token.equals("criteria")) {
+        } else if (token.equals("criterion")) {
           int num = scanner.nextInt();
           switch (num) {
             case 1: {
@@ -61,9 +60,23 @@ public class Main {
               int n = scanner.nextInt();
               System.out.println(String.format(
                   "Chosen permutation criteria with t = %d and n = %d", t, n));
-              criteria = new PermutationCriteria(t, n);
-            }
-            break;
+              criterion = new PermutationCriterion(t, n);
+            } break;
+            case 2: {
+              int n = scanner.nextInt();
+              int m = scanner.nextInt();
+              System.out.println(String.format(
+                  "Chosen conflict criteria with n = %d and m = %d", n, m));
+              criterion = new ConflictCriterion(n, m);
+              Map<Integer, Double> conflictMap =
+                  ((ConflictCriterion) criterion).conflictNum();
+              for (Map.Entry<Integer, Double> kv : conflictMap.entrySet()) {
+                System.out.println(String.format("Probability of having %d " +
+                                                 "collisions is %.6f",
+                                                 kv.getKey(), kv.getValue()));
+              }
+              System.out.println();
+            } break;
           }
         }
       }
@@ -73,7 +86,7 @@ public class Main {
   }
 
   private static void solveAgain() {
-    System.out.println(criteria.calculate(lastUsed));
+    System.out.println(criterion.calculate(lastUsed));
     System.out.println();
   }
 
@@ -88,7 +101,7 @@ public class Main {
     System.out.print(
         String.format("Mod:4095  Potential:%4d  ", task02.getPotential()));
     System.out.println(String.format("Period:%4d", list.size()));
-    System.out.println(criteria.calculate(list));
+    System.out.println(criterion.calculate(list));
     System.out.println();
 
     File logFile = new File("task02.txt");
@@ -109,7 +122,7 @@ public class Main {
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criteria.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(list)));
 
 /*
     File logFile = new File("task03.txt");
@@ -133,7 +146,7 @@ public class Main {
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criteria.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(list)));
   }
 
   private static void solve5() throws FileNotFoundException {
@@ -151,7 +164,7 @@ public class Main {
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criteria.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(list)));
   }
 
   private static void solve6() throws FileNotFoundException {
@@ -170,6 +183,6 @@ public class Main {
 
     System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criteria.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(list)));
   }
 }

@@ -11,14 +11,14 @@ import static java.util.Collections.swap;
 /**
  * infm created it with love on 5/16/16. Enjoy ;)
  */
-public class PermutationCriteria implements Criteria {
+public class PermutationCriterion implements Criterion {
 
   private static HashMap<Integer, Integer> frequency = new HashMap<>();
   private int t;
   private int tFact;
   private int n;
 
-  public PermutationCriteria(int t, int n) {
+  public PermutationCriterion(int t, int n) {
     this.t = t;
     tFact = 1;
     for (int i = 2; i <= t; ++i) {

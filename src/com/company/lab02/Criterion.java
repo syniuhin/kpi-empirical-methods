@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * infm created it with love on 5/16/16. Enjoy ;)
  */
-public interface Criteria {
+public interface Criterion {
 
   double calculate(List<BigInteger> sequence);
 
