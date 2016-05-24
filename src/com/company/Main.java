@@ -5,7 +5,6 @@ import com.company.lab02.*;
 
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -52,9 +51,7 @@ public class Main {
               solve6();
               break;
             case 7:
-              if (criterion instanceof ConflictCriterion) {
-                solve7();
-              }
+              solve7();
               break;
           }
         } else if (token.equals("repeat")) {
@@ -96,7 +93,8 @@ public class Main {
   }
 
   private static void solveAgain() {
-    System.out.println(criterion.calculate(lastUsed));
+    System.out.println(
+        String.format("Result: %.2f", criterion.calculate(lastUsed)));
     System.out.println();
   }
 
@@ -107,25 +105,25 @@ public class Main {
         mersenneM, mersenneA, 6, System.currentTimeMillis());
     lastUsed = task02;
 
-    System.out.print(
+    System.out.println(
         String.format("Mod:4095  Potential:%4d  ", task02.getPotential()));
-    System.out.println(criterion.calculate(task02));
+    System.out.println(
+        String.format("Result: %.2f", criterion.calculate(task02)));
     System.out.println();
   }
 
   private static void solve3() throws FileNotFoundException {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
-    Task03 task03 = new Task03(x0);
-    List<BigInteger> list = task03.generateSequence();
+    Task03Variable task03 = new Task03Variable(x0, 24);
     lastUsed = task03;
 
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(task03)));
+        String.format("Result: %.2f", criterion.calculate(task03)));
   }
 
   private static void solve3Conflict() {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
-    Task03Conflict task03 = new Task03Conflict(
+    Task03Variable task03 = new Task03Variable(
         x0, ((ConflictCriterion) criterion).getLogM());
     System.out.println(String.format("P: %.2f", criterion.calculate(task03)));
   }
@@ -138,7 +136,7 @@ public class Main {
     lastUsed = task04;
 
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(task04)));
+        String.format("Result: %.2f", criterion.calculate(task04)));
   }
 
   private static void solve5() throws FileNotFoundException {
@@ -154,7 +152,7 @@ public class Main {
     lastUsed = task05;
 
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(task05)));
+        String.format("Result: %.2f", criterion.calculate(task05)));
   }
 
   private static void solve6() throws FileNotFoundException {
@@ -171,15 +169,15 @@ public class Main {
     lastUsed = task06;
 
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(task06)));
+        String.format("Result: %.2f", criterion.calculate(task06)));
   }
 
   private static void solve7() {
     ConflictCriterion conflictCriterion = (ConflictCriterion) criterion;
     NativeGenerator generator = new NativeGenerator(
-        conflictCriterion.getLogM());
+        conflictCriterion.getLogM(), System.currentTimeMillis());
     System.out.println(
-        String.format("P: %.2f", conflictCriterion.calculate(generator)));
+        String.format("Result: %.2f", conflictCriterion.calculate(generator)));
 
   }
 }

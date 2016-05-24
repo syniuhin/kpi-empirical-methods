@@ -13,9 +13,11 @@ public class NativeGenerator implements ValueGenerator {
 
   private Random random;
   private int bound;
+  private long seed;
 
-  public NativeGenerator(int logbound) {
-    random = new Random();
+  public NativeGenerator(int logbound, long seed) {
+    this.seed = seed;
+    random = new Random(seed);
     this.bound = 1 << logbound;
   }
 
@@ -31,7 +33,7 @@ public class NativeGenerator implements ValueGenerator {
 
   @Override
   public BigInteger getVal0() {
-    return null;
+    return BigInteger.valueOf(seed);
   }
 
   @Override

@@ -8,12 +8,12 @@ import java.math.BigInteger;
 /**
  * infm created it with love on 5/17/16. Enjoy ;)
  */
-public class Task03Conflict implements ValueGenerator {
+public class Task03Variable implements ValueGenerator {
   private final BigInteger TWO_POW_E;
 
   private BigInteger x0;
 
-  public Task03Conflict(BigInteger x0, int logm) {
+  public Task03Variable(BigInteger x0, int logm) {
     this.x0 = x0;
     TWO_POW_E = BigInteger.valueOf(2).pow(logm);
   }
