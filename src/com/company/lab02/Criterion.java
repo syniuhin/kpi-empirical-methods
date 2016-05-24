@@ -1,5 +1,7 @@
 package com.company.lab02;
 
+import com.company.lab01.ValueGenerator;
+
 import java.math.BigInteger;
 import java.util.List;
 
@@ -8,6 +10,6 @@ import java.util.List;
  */
 public interface Criterion {
 
-  double calculate(List<BigInteger> sequence);
+  double calculate(ValueGenerator generator);
 
 }

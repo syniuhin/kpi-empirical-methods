@@ -1,6 +1,6 @@
 package com.company.lab02;
 
-import com.company.lab01.SingleValueGenerator;
+import com.company.lab01.ValueGenerator;
 
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * infm created it with love on 5/18/16. Enjoy ;)
  */
-public class NativeGenerator implements SingleValueGenerator {
+public class NativeGenerator implements ValueGenerator {
 
   private Random random;
   private int bound;
@@ -32,5 +32,10 @@ public class NativeGenerator implements SingleValueGenerator {
   @Override
   public BigInteger getVal0() {
     return null;
+  }
+
+  @Override
+  public BigInteger getRange() {
+    return BigInteger.valueOf(bound);
   }
 }

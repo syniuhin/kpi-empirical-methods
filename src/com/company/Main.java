@@ -3,11 +3,8 @@ package com.company;
 import com.company.lab01.*;
 import com.company.lab02.*;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,7 +12,7 @@ import java.util.Scanner;
 public class Main {
 
   private static Criterion criterion;
-  private static List<BigInteger> lastUsed = null;
+  private static ValueGenerator lastUsed = null;
 
   public static void main(String[] args) {
     try {
@@ -36,10 +33,11 @@ public class Main {
               break;
             case 3:
               System.out.println("Solving 3...");
-              if (criterion instanceof PermutationCriterion)
+              if (criterion instanceof PermutationCriterion) {
                 solve3();
-              else
+              } else {
                 solve3Conflict();
+              }
               break;
             case 4:
               System.out.println("Solving 4...");
@@ -54,8 +52,9 @@ public class Main {
               solve6();
               break;
             case 7:
-              if (criterion instanceof ConflictCriterion)
+              if (criterion instanceof ConflictCriterion) {
                 solve7();
+              }
               break;
           }
         } else if (token.equals("repeat")) {
@@ -75,7 +74,8 @@ public class Main {
               int logn = scanner.nextInt();
               int logm = scanner.nextInt();
               System.out.println(String.format(
-                  "Chosen conflict criteria with n = %d and m = %d", 1 << logn, 1 << logm));
+                  "Chosen conflict criteria with n = %d and m = %d", 1 << logn,
+                  1 << logm));
               criterion = new ConflictCriterion(logn, logm);
               Map<Integer, Double> conflictMap = ((ConflictCriterion) criterion)
                   .conflictNum();
@@ -105,54 +105,29 @@ public class Main {
     int mersenneA = 1366;
     Task02 task02 = new Task02(
         mersenneM, mersenneA, 6, System.currentTimeMillis());
-    List<BigInteger> list = task02.generateSequence();
-    lastUsed = new ArrayList<>(list);
+    lastUsed = task02;
 
     System.out.print(
         String.format("Mod:4095  Potential:%4d  ", task02.getPotential()));
-    System.out.println(String.format("Period:%4d", list.size()));
-    System.out.println(criterion.calculate(list));
+    System.out.println(criterion.calculate(task02));
     System.out.println();
-
-    File logFile = new File("task02.txt");
-    PrintWriter logger = new PrintWriter(logFile);
-    for (BigInteger i : list) {
-      logger.print(i);
-      logger.print(" ");
-    }
-    logger.flush();
-    logger.close();
   }
 
   private static void solve3() throws FileNotFoundException {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
     Task03 task03 = new Task03(x0);
     List<BigInteger> list = task03.generateSequence();
-    lastUsed = new ArrayList<>(list);
+    lastUsed = task03;
 
-    System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(list)));
-
-/*
-    File logFile = new File("task03.txt");
-    PrintWriter logger = new PrintWriter(logFile);
-    for (BigInteger i : list) {
-      logger.print(i);
-      logger.print(" ");
-    }
-    logger.flush();
-    logger.close();
-*/
+        String.format("Chi squared: %.2f", criterion.calculate(task03)));
   }
 
   private static void solve3Conflict() {
     BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
     Task03Conflict task03 = new Task03Conflict(
         x0, ((ConflictCriterion) criterion).getLogM());
-    System.out.println(String.format("P: %.2f",
-                                     ((ConflictCriterion) criterion).calculate(
-                                         task03)));
+    System.out.println(String.format("P: %.2f", criterion.calculate(task03)));
   }
 
   private static void solve4() throws FileNotFoundException {
@@ -160,12 +135,10 @@ public class Main {
     Task04 task04 = new Task04(BigInteger.valueOf(3571),
                                BigInteger.valueOf(123), BigInteger.valueOf(7),
                                x0);
-    List<BigInteger> list = task04.generateSequence();
-    lastUsed = new ArrayList<>(list);
+    lastUsed = task04;
 
-    System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(task04)));
   }
 
   private static void solve5() throws FileNotFoundException {
@@ -178,12 +151,10 @@ public class Main {
                              BigInteger.valueOf(98878796786L));
 
     Task05 task05 = new Task05(genX, genY, BigInteger.valueOf(mersenneM));
-    List<BigInteger> list = task05.generateSequence();
-    lastUsed = new ArrayList<>(list);
+    lastUsed = task05;
 
-    System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(task05)));
   }
 
   private static void solve6() throws FileNotFoundException {
@@ -197,19 +168,18 @@ public class Main {
         "Params: " + p.toString() + " " + a.toString() + " " + b.toString() +
         " " + x0.toString());
     Task06 task06 = new Task06(p, a, b, x0);
-    List<BigInteger> list = task06.generateSequence();
-    lastUsed = new ArrayList<>(list);
+    lastUsed = task06;
 
-    System.out.println(String.format("Period: %d", list.size()));
     System.out.println(
-        String.format("Chi squared: %.2f", criterion.calculate(list)));
+        String.format("Chi squared: %.2f", criterion.calculate(task06)));
   }
 
   private static void solve7() {
     ConflictCriterion conflictCriterion = (ConflictCriterion) criterion;
-    NativeGenerator generator = new NativeGenerator(conflictCriterion.getLogM());
-    System.out.println(String.format("P: %.2f",
-                                     conflictCriterion.calculate(generator)));
+    NativeGenerator generator = new NativeGenerator(
+        conflictCriterion.getLogM());
+    System.out.println(
+        String.format("P: %.2f", conflictCriterion.calculate(generator)));
 
   }
 }

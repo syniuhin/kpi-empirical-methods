@@ -13,17 +13,17 @@ import java.util.List;
 /**
  * infm created it with love on 4/12/16. Enjoy ;)
  */
-public class Task05 {
+public class Task05 implements ValueGenerator {
 
-  private SingleValueGenerator genX;
-  private SingleValueGenerator genY;
+  private ValueGenerator genX;
+  private ValueGenerator genY;
 
   private BigInteger x;
   private BigInteger y;
 
   private BigInteger m;
 
-  public Task05(SingleValueGenerator genX, SingleValueGenerator genY,
+  public Task05(ValueGenerator genX, ValueGenerator genY,
                 BigInteger m) {
     this.genX = genX;
     this.genY = genY;
@@ -36,7 +36,8 @@ public class Task05 {
     y = genY.getVal0();
   }
 
-  private BigInteger generateNext() {
+  @Override
+  public BigInteger generateNext(BigInteger value) {
     x = genX.generateNext(x);
     y = genY.generateNext(y);
     return x.subtract(y).mod(m);
@@ -51,7 +52,7 @@ public class Task05 {
     BigInteger z;
     HashMap<Pair<BigInteger, BigInteger>, Integer> occurred = new HashMap<>();
     for (int i = 0; i < Integer.MAX_VALUE / 4; ++i) {
-      z = generateNext();
+      z = generateNext(BigInteger.ONE);
 
       if (numGenerated < 50) {
         numGenerated++;
@@ -73,12 +74,22 @@ public class Task05 {
     return -1;
   }
 
+  @Override
+  public BigInteger getVal0() {
+    return null;
+  }
+
+  @Override
+  public BigInteger getRange() {
+    return m;
+  }
+
   public List<BigInteger> generateSequence() {
     BigInteger z;
     HashMap<Pair<BigInteger, BigInteger>, Integer> occurred = new HashMap<>();
     List<BigInteger> list = new ArrayList<>();
     for (int i = 0; i < Integer.MAX_VALUE / 4; ++i) {
-      z = generateNext();
+      z = generateNext(BigInteger.ONE);
 
       Pair<BigInteger, BigInteger> params = new Pair<>(x, y);
       if (occurred.containsKey(params)) {

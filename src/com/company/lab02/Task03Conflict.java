@@ -1,6 +1,6 @@
 package com.company.lab02;
 
-import com.company.lab01.SingleValueGenerator;
+import com.company.lab01.ValueGenerator;
 
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * infm created it with love on 5/17/16. Enjoy ;)
  */
-public class Task03Conflict implements SingleValueGenerator {
+public class Task03Conflict implements ValueGenerator {
   private final BigInteger TWO_POW_E;
 
   private BigInteger x0;

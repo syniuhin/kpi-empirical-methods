@@ -1,27 +1,26 @@
 package com.company.lab02;
 
-import com.company.lab01.SingleValueGenerator;
+import com.company.lab01.ValueGenerator;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * infm created it with love on 5/16/16. Enjoy ;)
  */
 public class ConflictCriterion implements Criterion {
 
-  private static final double EPS = 5e-10;
   public static final double[] T = new double[]{
       .01, .05, .25, 0.5, .75, .95, .99, 1.00 };
-
+  private static final double EPS = 5e-10;
   private int logn;
   private int n;
   private int logm;
   private int m;
 
   private boolean[] met;
-
-  private BigInteger bigM = null;
 
   public ConflictCriterion(int logn, int logm) {
     this.logn = logn;
@@ -34,21 +33,25 @@ public class ConflictCriterion implements Criterion {
     return logm;
   }
 
-  public double calculate(SingleValueGenerator generator) {
+  public double calculate(ValueGenerator generator) {
     met = new boolean[m];
     Arrays.fill(met, false);
-    if (bigM == null)
-      bigM = BigInteger.valueOf(m);
-
     int collisions = 0;
-    BigInteger current = BigInteger.valueOf(System.currentTimeMillis());
+    BigInteger current = generator.getVal0();
     for (int i = 0; i < n; ++i) {
-      current = generator.generateNext(current);
-      int mt = current.mod(bigM).intValue();
-      if (!met[mt])
+      // Generate decimal word
+      int mt = 0;
+      for (int j = 0; j < logm; ++j) {
+        current = generator.generateNext(current);
+        long b = Math.floorDiv(
+            2L * current.longValue(), generator.getRange().longValue());
+        mt += b << j;
+      }
+      if (!met[mt]) {
         met[mt] = true;
-      else
+      } else {
         collisions++;
+      }
     }
     System.out.println(String.format("Met %d collisions.", collisions));
     Map<Integer, Double> pMap = conflictNum();
@@ -63,27 +66,6 @@ public class ConflictCriterion implements Criterion {
     }
     return p;
   }
-
-  @Override
-  public double calculate(List<BigInteger> sequence) {
-    met = new boolean[m];
-    Arrays.fill(met, false);
-    if (bigM == null)
-      bigM = BigInteger.valueOf(m);
-    List<BigInteger> seqCopy = new ArrayList<>(sequence);
-
-    int collisions = 0;
-    for (int i = 0; i < n; ++i) {
-      BigInteger current = seqCopy.get(i % seqCopy.size());
-      int mt = current.mod(bigM).intValue();
-      if (!met[mt])
-        met[mt] = true;
-      else
-        collisions++;
-    }
-    return collisions;
-  }
-  
 
   public Map<Integer, Double> conflictNum() {
     double[] a = new double[n + 1];
@@ -118,14 +100,16 @@ public class ConflictCriterion implements Criterion {
     int j = j0 - 1;
     while (t < T.length && 1 - p > EPS && j <= n) {
       j++;
-      if (j < a.length)
+      if (j < a.length) {
         p += a[j];
+      }
       if (p - T[t] > EPS) {
         while (t < T.length && p - T[t] > EPS) {
           ++t;
         }
-        if (t > 0)
+        if (t > 0) {
           ps.put(n - j - 1, 1 - p);
+        }
       }
     }
     return ps;

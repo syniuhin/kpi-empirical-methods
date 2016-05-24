@@ -1,5 +1,7 @@
 package com.company.lab02;
 
+import com.company.lab01.ValueGenerator;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,13 +66,18 @@ public class PermutationCriterion implements Criterion {
     return -1;
   }
 
-  public double calculate(List<BigInteger> sequence) {
+  @Override
+  public double calculate(ValueGenerator generator) {
     reset();
-    List<BigInteger> subSequence;
     int hash;
-    int upperBound = Math.min(n, sequence.size() / t);
-    for (int i = 0; i < upperBound; ++i) {
-      subSequence = new ArrayList<>(sequence.subList(i * t, (i + 1) * t));
+    BigInteger current = generator.getVal0();
+    int k = n / t;
+    for (int i = 0; i < k; ++i) {
+      ArrayList<BigInteger> subSequence = new ArrayList<>();
+      for (int j = 0; j < t; ++j) {
+        current = generator.generateNext(current);
+        subSequence.add(current);
+      }
       hash = permHash(subSequence);
       if (!frequency.containsKey(hash)) {
         throw new IllegalStateException(
@@ -79,7 +86,6 @@ public class PermutationCriterion implements Criterion {
       int freqNew = frequency.get(hash) + 1;
       frequency.put(hash, freqNew);
     }
-
     BigInteger chisq = BigInteger.ZERO;
     // Computes chi squared
     for (HashMap.Entry<Integer, Integer> kv : frequency.entrySet()) {
@@ -89,7 +95,7 @@ public class PermutationCriterion implements Criterion {
       chisq = chisq.add(y);
     }
 
-    return chisq.doubleValue() / upperBound - upperBound;
+    return chisq.doubleValue() / k - k;
   }
 
   private void reset() {

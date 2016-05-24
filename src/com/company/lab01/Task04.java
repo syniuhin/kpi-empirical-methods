@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * infm created it with love on 4/12/16. Enjoy ;)
  */
-public class Task04 implements SingleValueGenerator {
+public class Task04 implements ValueGenerator {
   private BigInteger p;
   private BigInteger a;
   private BigInteger c;
