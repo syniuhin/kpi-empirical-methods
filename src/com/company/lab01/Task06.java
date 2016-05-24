@@ -81,4 +81,9 @@ public class Task06 implements SingleValueGenerator {
   public BigInteger getVal0() {
     return x0;
   }
+
+  @Override
+  public BigInteger getRange() {
+    return m;
+  }
 }

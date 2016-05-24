@@ -64,22 +64,6 @@ public class PermutationCriterion implements Criterion {
     return -1;
   }
 
-  public int getT() {
-    return t;
-  }
-
-  public void setT(int t) {
-    this.t = t;
-  }
-
-  public int getN() {
-    return n;
-  }
-
-  public void setN(int n) {
-    this.n = n;
-  }
-
   public double calculate(List<BigInteger> sequence) {
     reset();
     List<BigInteger> subSequence;
@@ -129,15 +113,6 @@ public class PermutationCriterion implements Criterion {
   }
 
   private int permHash(List<BigInteger> list) {
-/*
-    ArrayList<BigInteger> sorted = new ArrayList<>(list);
-    Collections.sort(sorted);
-    int hash = 0;
-    for (BigInteger initial : list) {
-      hash = t * hash + sorted.indexOf(initial);
-    }
-    return hash;
-*/
     int r = t;
     int f = 0;
     BigInteger listMax;

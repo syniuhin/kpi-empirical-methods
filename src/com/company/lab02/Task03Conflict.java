@@ -30,4 +30,9 @@ public class Task03Conflict implements SingleValueGenerator {
   public BigInteger getVal0() {
     return x0;
   }
+
+  @Override
+  public BigInteger getRange() {
+    return TWO_POW_E;
+  }
 }

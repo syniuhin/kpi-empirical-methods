@@ -62,6 +62,11 @@ public class Task04 implements SingleValueGenerator {
     return x0;
   }
 
+  @Override
+  public BigInteger getRange() {
+    return p;
+  }
+
   public BigInteger generateNext(BigInteger x) {
     BigInteger xInverse;
     if (x.compareTo(BigInteger.ZERO) != 0) {

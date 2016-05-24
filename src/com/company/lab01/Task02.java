@@ -49,6 +49,11 @@ public class Task02 implements SingleValueGenerator {
     return x0;
   }
 
+  @Override
+  public BigInteger getRange() {
+    return m;
+  }
+
   public int getPeriod(BigInteger mod) throws FileNotFoundException {
     File logFile = new File(String.format("task02_m%04d.log", mod));
     PrintWriter logger = new PrintWriter(logFile);

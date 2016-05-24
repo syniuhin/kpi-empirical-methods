@@ -11,4 +11,6 @@ public interface SingleValueGenerator {
   int getPeriod() throws FileNotFoundException;
 
   BigInteger getVal0();
+
+  BigInteger getRange();
 }
