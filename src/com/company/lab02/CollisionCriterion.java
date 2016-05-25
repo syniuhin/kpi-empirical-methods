@@ -10,10 +10,10 @@ import java.util.TreeMap;
 /**
  * infm created it with love on 5/16/16. Enjoy ;)
  */
-public class ConflictCriterion implements Criterion {
+public class CollisionCriterion implements Criterion {
 
   public static final double[] T = new double[]{
-      .01, .05, .25, 0.5, .75, .95, .99, 1.00 };
+      .01, .025, .05, .1, .25, .5, .75, .9, .95, .975, .99, 1.00 };
   private static final double EPS = 5e-10;
   private int logn;
   private int n;
@@ -22,7 +22,7 @@ public class ConflictCriterion implements Criterion {
 
   private boolean[] met;
 
-  public ConflictCriterion(int logn, int logm) {
+  public CollisionCriterion(int logn, int logm) {
     this.logn = logn;
     n = 1 << logn;
     this.logm = logm;
@@ -55,11 +55,11 @@ public class ConflictCriterion implements Criterion {
     }
     System.out.println(String.format("Met %d collisions.", collisions));
     Map<Integer, Double> pMap = conflictNum();
-    int minD = n;
+    int minD = -n;
     double p = 1;
     for (Map.Entry<Integer, Double> e : pMap.entrySet()) {
       int currD = e.getKey() - collisions;
-      if (currD > 0 && currD < minD) {
+      if (currD < 0 && currD > minD) {
         minD = currD;
         p = e.getValue();
       }

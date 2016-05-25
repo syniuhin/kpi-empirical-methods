@@ -1,0 +1,35 @@
+beta <- function(a, b, unif.custom=T) {
+  y1 <- 1
+  y2 <- 1
+  while (y1 + y2 > 1) {
+    y1 <- unif(unif.custom) ^ (1 / a)
+    y2 <- unif(unif.custom) ^ (1 / b)
+  }
+  y1 / (y1 + y2)
+}
+
+
+f.dist <- function(n=50, k1=7, k2=15, unif.custom=T, beta.custom=T) {
+  xi <- 0
+  x <- c()
+  if (beta.custom) {
+    yb <- c()
+    for (i in 1:n)
+      yb <- c(yb, beta(k1/2, k2/2, unif.custom))
+  } else {
+    yb <- sapply(rbeta(n, k1/2, k2/2), function(yi) { k2 * yi / (k1 * (1 - yi)) })
+  }
+  if (FALSE) {
+  for (i in 1:n) {
+    if (beta.custom) {
+      yi <- beta(k1/2, k2/2)
+    } else {
+      yi <- rbeta(1, k1/2, k2/2)
+    }
+    xi <- k2 * yi / (k1 * (1 - yi))
+    x <- c(x, xi)
+  }
+  x
+  }
+  yb
+}

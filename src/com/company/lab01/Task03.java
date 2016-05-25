@@ -12,7 +12,7 @@ import java.util.List;
  * infm created it with love on 4/12/16. Enjoy ;)
  */
 public class Task03 implements ValueGenerator {
-  private static final BigInteger TWO_POW_E = BigInteger.valueOf(2).pow(24);
+  private static final BigInteger TWO_POW_E = BigInteger.valueOf(2).pow(28);
 
   private BigInteger x0;
 

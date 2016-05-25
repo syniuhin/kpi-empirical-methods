@@ -6,9 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * infm created it with love on 4/12/16. Enjoy ;)
@@ -76,23 +74,6 @@ public class Task04 implements ValueGenerator {
       xInverse = BigInteger.ZERO;
     }
     return a.multiply(xInverse).add(c).mod(p);
-  }
-
-  public List<BigInteger> generateSequence() {
-    BigInteger x = x0;
-    HashMap<BigInteger, Integer> occurred = new HashMap<>();
-    List<BigInteger> list = new ArrayList<>();
-    for (int i = 0; i < Integer.MAX_VALUE / 4; ++i) {
-      x = generateNext(x);
-
-      if (occurred.containsKey(x)) {
-        list = list.subList(occurred.get(x), i);
-        break;
-      }
-      occurred.put(x, i);
-      list.add(x);
-    }
-    return list;
   }
 
   private class Euclid {

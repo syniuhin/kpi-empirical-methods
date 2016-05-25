@@ -13,6 +13,9 @@ public class Main {
   private static Criterion criterion;
   private static ValueGenerator lastUsed = null;
 
+  private static Criterion lastUsedPermutation;
+  private static Criterion lastUsedConflict;
+
   public static void main(String[] args) {
     try {
       String token = "enter";
@@ -21,17 +24,59 @@ public class Main {
         System.out.println("Please enter next command:");
         token = scanner.next();
         if (token.equals("solve")) {
-          int num = scanner.nextInt();
+          String s = scanner.next();
+          int num = 0;
+          if (s.equals("all")) {
+            System.out.println("Linear congruent...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve2();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
+
+            System.out.println("Coveyou...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve3();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
+
+            System.out.println("Eichenaur & Lehn...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve4();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
+
+            System.out.println("Merge of 2...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve5();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
+
+            System.out.println("Custom method...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve6();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
+            continue;
+          } else {
+            num = Integer.valueOf(s);
+          }
           switch (num) {
-            case 1:
-              System.out.println("Sorry, it doesn't work here!");
-              break;
             case 2:
-              System.out.println("Solving 2...");
+              System.out.println("Linear congruent...");
               solve2();
               break;
             case 3:
-              System.out.println("Solving 3...");
+              System.out.println("Coveyou...");
               if (criterion instanceof PermutationCriterion) {
                 solve3();
               } else {
@@ -39,19 +84,22 @@ public class Main {
               }
               break;
             case 4:
-              System.out.println("Solving 4...");
+              System.out.println("Eichenaur & Lehn...");
               solve4();
               break;
             case 5:
-              System.out.println("Solving 5...");
+              System.out.println("Merge of 2...");
               solve5();
               break;
             case 6:
-              System.out.println("Solving 6...");
+              System.out.println("Custom method...");
               solve6();
               break;
             case 7:
               solve7();
+              break;
+            default:
+              System.out.println("Invalid token!");
               break;
           }
         } else if (token.equals("repeat")) {
@@ -65,6 +113,7 @@ public class Main {
               System.out.println(String.format(
                   "Chosen permutation criteria with t = %d and n = %d", t, n));
               criterion = new PermutationCriterion(t, n);
+              lastUsedPermutation = criterion;
             }
             break;
             case 2: {
@@ -73,8 +122,9 @@ public class Main {
               System.out.println(String.format(
                   "Chosen conflict criteria with n = %d and m = %d", 1 << logn,
                   1 << logm));
-              criterion = new ConflictCriterion(logn, logm);
-              Map<Integer, Double> conflictMap = ((ConflictCriterion) criterion)
+              criterion = new CollisionCriterion(logn, logm);
+              lastUsedConflict = criterion;
+              Map<Integer, Double> conflictMap = ((CollisionCriterion) criterion)
                   .conflictNum();
               for (Map.Entry<Integer, Double> kv : conflictMap.entrySet()) {
                 System.out.println(String.format(
@@ -84,6 +134,9 @@ public class Main {
               System.out.println();
             }
             break;
+            default:
+              System.out.println("Invalid token!");
+              break;
           }
         }
       }
@@ -109,11 +162,10 @@ public class Main {
         String.format("Mod:4095  Potential:%4d  ", task02.getPotential()));
     System.out.println(
         String.format("Result: %.2f", criterion.calculate(task02)));
-    System.out.println();
   }
 
   private static void solve3() throws FileNotFoundException {
-    BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
+    BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis() / 4 * 4 + 2);
     Task03Variable task03 = new Task03Variable(x0, 24);
     lastUsed = task03;
 
@@ -122,9 +174,9 @@ public class Main {
   }
 
   private static void solve3Conflict() {
-    BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis());
+    BigInteger x0 = BigInteger.valueOf(System.currentTimeMillis() / 4 * 4 + 2);
     Task03Variable task03 = new Task03Variable(
-        x0, ((ConflictCriterion) criterion).getLogM());
+        x0, ((CollisionCriterion) criterion).getLogM());
     System.out.println(String.format("P: %.2f", criterion.calculate(task03)));
   }
 
@@ -173,11 +225,11 @@ public class Main {
   }
 
   private static void solve7() {
-    ConflictCriterion conflictCriterion = (ConflictCriterion) criterion;
+    CollisionCriterion collisionCriterion = (CollisionCriterion) criterion;
     NativeGenerator generator = new NativeGenerator(
-        conflictCriterion.getLogM(), System.currentTimeMillis());
+        collisionCriterion.getLogM(), System.currentTimeMillis());
     System.out.println(
-        String.format("Result: %.2f", conflictCriterion.calculate(generator)));
+        String.format("Result: %.2f", collisionCriterion.calculate(generator)));
 
   }
 }
