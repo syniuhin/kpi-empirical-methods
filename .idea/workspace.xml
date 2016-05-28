@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e37f99da-24fd-4214-a6f1-d1a19eb57a19" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/lab02/ConflictCriterion.java" afterPath="$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/lab01/Task03.java" afterPath="$PROJECT_DIR$/src/com/company/lab01/Task03.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/lab01/Task04.java" afterPath="$PROJECT_DIR$/src/com/company/lab01/Task04.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab3/plot.R" afterPath="$PROJECT_DIR$/lab3/plot.R" />
     </list>
     <ignored path="empi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +78,8 @@
       <file leaf-file-name="Task03.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/lab01/Task03.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+            <state relative-caret-position="112">
+              <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
               <folding>
                 <element signature="e#1911#1912#0" expanded="true" />
                 <element signature="e#1937#1938#0" expanded="true" />
@@ -777,7 +774,7 @@
       <workItem from="1464063453483" duration="14917000" />
       <workItem from="1464092275178" duration="294000" />
       <workItem from="1464171379044" duration="617000" />
-      <workItem from="1464208849679" duration="1918000" />
+      <workItem from="1464208849679" duration="2564000" />
     </task>
     <task id="LOCAL-00001" summary="Changed SingleValueGenerator to get a range of it.">
       <created>1464064022177</created>
@@ -804,7 +801,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73511000" />
+    <option name="totallyTimeSpent" value="74157000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -826,7 +823,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.585736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.585736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22528364" sideWeight="0.47089946" order="1" side_tool="false" content_ui="tabs" />
@@ -1303,8 +1300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/lab01/Task03.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+        <state relative-caret-position="112">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding>
             <element signature="e#1911#1912#0" expanded="true" />
             <element signature="e#1937#1938#0" expanded="true" />
