@@ -1,3 +1,4 @@
+# Custom implementation of poisson distribution.
 poisson.dist <- function(n=50, mu=9) {
   bound <- exp(-mu)
   y <- c()
