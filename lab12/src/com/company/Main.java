@@ -66,6 +66,14 @@ public class Main {
             System.out.println("Conflict criterion:");
             criterion = lastUsedConflict;
             solveAgain();
+
+            System.out.println("System generator...");
+            System.out.println("Permutation criterion:");
+            criterion = lastUsedPermutation;
+            solve7();
+            System.out.println("Conflict criterion:");
+            criterion = lastUsedConflict;
+            solveAgain();
             continue;
           } else {
             num = Integer.valueOf(s);
@@ -225,11 +233,11 @@ public class Main {
   }
 
   private static void solve7() {
-    CollisionCriterion collisionCriterion = (CollisionCriterion) criterion;
     NativeGenerator generator = new NativeGenerator(
-        collisionCriterion.getLogM(), System.currentTimeMillis());
+        (criterion instanceof CollisionCriterion)
+          ? ((CollisionCriterion) criterion).getLogM()
+          : 30, System.currentTimeMillis());
     System.out.println(
-        String.format("Result: %.2f", collisionCriterion.calculate(generator)));
-
+        String.format("Result: %.2f", criterion.calculate(generator)));
   }
 }
