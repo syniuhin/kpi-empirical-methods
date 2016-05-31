@@ -40,3 +40,35 @@ f.cdf.plot <- function(fun.df=df.all, n=1000, k1, k2, xmax=5, precision=.1) {
     stat_ecdf(pad = F) + coord_cartesian(xlim = c(0, xmax)) +
     ylab('Кумулятивна щільність') + xlab('Значення випадкової величини')
 }
+
+f.pdf.plot.multiple <- function(n=1000, k1s, k2s, xmax=5, precision=.1,
+                                unif.custom=T, beta.custom=T) {
+  f.df <- data.frame()
+  for (i in 1:length(k1s)) {
+    df <- data.frame(xemp=f.dist(n=n, k1=k1s[i], k2=k2s[i],
+                                 unif.custom = unif.custom,
+                                 beta.custom = beta.custom),
+                     y=paste(c("Генератор із", k1s[i], k2s[i]), collapse = " "))
+    f.df <- rbind(f.df, df)
+  }
+  ggplot(f.df, aes(x = xemp, ..density.., colour = y)) +
+    geom_freqpoly(binwidth = precision, position = "identity",
+                  stat = "bin") +
+    xlim(c(0, xmax)) +
+    ylab('Щільність') + xlab('Значення випадкової величини')
+}
+
+f.cdf.plot.multiple <- function(n=1000, k1s, k2s, xmax=5, precision=.1,
+                                unif.custom=T, beta.custom=T) {
+  f.df <- data.frame()
+  for (i in 1:length(k1s)) {
+    df <- data.frame(xemp=f.dist(n=n, k1=k1s[i], k2=k2s[i],
+                                 unif.custom = unif.custom,
+                                 beta.custom = beta.custom),
+                     y=paste(c("Генератор із", k1s[i], k2s[i]), collapse = " "))
+    f.df <- rbind(f.df, df)
+  }
+  ggplot(f.df, aes(x = xemp, colour = y)) +
+    stat_ecdf(pad = F) + coord_cartesian(xlim = c(0, xmax)) +
+    ylab('Кумулятивна щільність') + xlab('Значення випадкової величини')
+}
