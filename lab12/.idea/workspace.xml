@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e37f99da-24fd-4214-a6f1-d1a19eb57a19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java" afterPath="$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java" />
     </list>
     <ignored path="empi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,21 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PermutationCriterion.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PermutationCriterion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/lab02/PermutationCriterion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="123" column="23" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="23" />
+            <state relative-caret-position="-25">
+              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollisionCriterion.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CollisionCriterion.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-231">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="167">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,10 +106,10 @@
         <option value="$PROJECT_DIR$/src/com/company/lab02/NativeGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/company/lab01/Task04.java" />
         <option value="$PROJECT_DIR$/src/com/company/lab02/ConflictCriterion.java" />
-        <option value="$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java" />
         <option value="$PROJECT_DIR$/src/com/company/lab01/Task03.java" />
         <option value="$PROJECT_DIR$/src/com/company/lab02/Criterion.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java" />
       </list>
     </option>
   </component>
@@ -677,7 +678,7 @@
       <workItem from="1464171379044" duration="617000" />
       <workItem from="1464208849679" duration="2564000" />
       <workItem from="1464612530349" duration="951000" />
-      <workItem from="1464685007775" duration="748000" />
+      <workItem from="1464685007775" duration="2218000" />
     </task>
     <task id="LOCAL-00001" summary="Changed SingleValueGenerator to get a range of it.">
       <created>1464064022177</created>
@@ -704,7 +705,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75856000" />
+    <option name="totallyTimeSpent" value="77326000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -726,7 +727,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.585736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.585736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22528364" sideWeight="0.47089946" order="1" side_tool="false" content_ui="tabs" />
@@ -839,21 +840,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/lab02/PermutationCriterion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-25">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/lab02/PermutationCriterion.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/lab02/CollisionCriterion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="123" column="23" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="167">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

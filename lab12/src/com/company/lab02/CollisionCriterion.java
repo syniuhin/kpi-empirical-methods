@@ -67,6 +67,11 @@ public class CollisionCriterion implements Criterion {
     return p;
   }
 
+  /**
+   * Calculates percent table to compare our empirical results with.
+   * Algorithmic version of more complex formula involving Stirling numbers.
+   * @return TreeMap, conflictNum -> quantile.
+   */
   public Map<Integer, Double> conflictNum() {
     double[] a = new double[n + 1];
 
