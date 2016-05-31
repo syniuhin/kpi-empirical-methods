@@ -27,9 +27,9 @@ df.all <- function(n, k1, k2) {
 f.pdf.plot <- function(fun.df=df.all, n=1000, k1, k2, xmax=5, precision=.1) {
   f.df <- fun.df(n, k1, k2)
   ggplot(f.df, aes(x = xemp, ..density..,  colour = y)) +
-    geom_freqpoly(alpha = .1, binwidth = precision, position = "identity",
+    geom_freqpoly(binwidth = precision, position = "identity",
               stat = "bin") +
-    coord_cartesian(xlim = c(0, xmax)) +
+    xlim(c(0, xmax)) +
     ylab('Щільність') + xlab('Значення випадкової величини')
 }
 
